@@ -18,7 +18,7 @@ create table oauth_client_details (
 DROP TABLE IF EXISTS oauth_client_token;
 create table oauth_client_token (
   token_id VARCHAR(256),
-  token VARCHAR(2048),
+  token BLOB,
   authentication_id VARCHAR(256) PRIMARY KEY,
   user_name VARCHAR(256),
   client_id VARCHAR(256)
@@ -27,24 +27,24 @@ create table oauth_client_token (
 DROP TABLE IF EXISTS oauth_access_token;
 create table oauth_access_token (
   token_id VARCHAR(256),
-  token VARCHAR(2048),
+  token BLOB,
   authentication_id VARCHAR(256) PRIMARY KEY,
   user_name VARCHAR(256),
   client_id VARCHAR(256),
-  authentication VARCHAR(2048),
+  authentication BLOB,
   refresh_token VARCHAR(256)
 );
 
 DROP TABLE IF EXISTS oauth_refresh_token;
 create table oauth_refresh_token (
   token_id VARCHAR(256),
-  token VARCHAR(2048),
-  authentication VARCHAR(2048)
+  token BLOB,
+  authentication BLOB
 );
 
 DROP TABLE IF EXISTS oauth_code;
 create table oauth_code (
-  code VARCHAR(256), authentication VARCHAR(2048)
+  code VARCHAR(256), authentication BLOB
 );
 
 DROP TABLE IF EXISTS oauth_approvals;
@@ -126,3 +126,21 @@ BEGIN
    RETURN currval(seq_name);
 END$
 DELIMITER ;
+
+
+
+DROP TABLE IF EXISTS user_identity_info;
+--user info
+CREATE TABLE `user_identity_info` (
+  `user_id` varchar(128) NOT NULL,
+  `mobile` varchar(20) NOT NULL,
+  `username` varchar(128) NOT NULL,
+  `email` varchar(128) DEFAULT NULL,
+  `password` varchar(256) NOT NULL,
+  `state` char(1) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `index_user_id` (`user_id`),
+  UNIQUE KEY `index_mobile` (`mobile`),
+  UNIQUE KEY `index_username` (`username`),
+  KEY `index_email` (`email`)
+) ;

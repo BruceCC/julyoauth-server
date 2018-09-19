@@ -9,7 +9,7 @@
         <setting name="cacheEnabled" value="false"/>
     </settings>
     <typeAliases>
-        <package name="org.leave.julyoauth2.domain"/>
+        <package name="org.leave.bean"/>
     </typeAliases>
 
     <!--	<mappers>

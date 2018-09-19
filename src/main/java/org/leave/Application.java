@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAutoConfiguration
 @Configuration
 @SpringBootApplication
-@EnableOAuth2Sso
+//@EnableOAuth2Sso
 @MapperScan("org.leave.mapper")
 @EnableTransactionManagement
 public class Application {
